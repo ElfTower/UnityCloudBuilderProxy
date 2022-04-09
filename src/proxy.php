@@ -9,6 +9,8 @@
     $repo = getenv("PROXY_REPO");
     $branch = getenv("PROXY_BRANCH");
 
+    file_put_contents ("./json_requests.txt", json_encode ($obj), FILE_APPEND);
+
     if ($_SERVER['PHP_AUTH_USER'] != $checkToken)
     {
         header ('HTTP/1.0 401 Unauthorized');
