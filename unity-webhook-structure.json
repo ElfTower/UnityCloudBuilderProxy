@@ -1,0 +1,71 @@
+{
+    "buildNumber": 4,
+    "buildStatus": "success",
+    "buildTargetName": "Runeguard WebGL",
+    "cleanBuild": false,
+    "credentialsOutdated": false,
+    "lastBuiltRevision": "sdfgsdfg",
+    "links": {
+        "api_self": {
+            "href": "relative_url_with_escapes",
+            "method": "get"
+        },
+        "api_share": {
+            "href": "relative_url_with_escapes",
+            "method": "get"
+        },
+        "artifacts": [
+            {
+                "files": [
+                    {
+                        "filename": "Runeguard WebGL.zip",
+                        "href": "absolute_url_to_artifact_with_escapes",
+                        "md5sum": "checksum",
+                        "resumable": false,
+                        "size": 224982325
+                    }
+                ],
+                "key": "primary",
+                "name": ".ZIP file",
+                "primary": true,
+                "show_download": true
+            }
+        ],
+        "dashboard_download": {
+            "href": "absolute_url_to_artifact_with_escapes",
+            "method": "get"
+        },
+        "dashboard_download_direct": {
+            "href": "absolute_url_to_artifact_with_escapes",
+            "method": "get"
+        },
+        "dashboard_log": {
+            "href": "relative_url_with_escapes",
+            "method": "get"
+        },
+        "dashboard_project": {
+            "href": "relative_url_with_escapes",
+            "method": "get"
+        },
+        "dashboard_summary": {
+            "href": "relative_url_with_escapes",
+            "method": "get"
+        },
+        "dashboard_url": {
+            "href": "absolute_url_to_artifact_with_escapes",
+            "method": "get"
+        },
+        "share_url": {
+            "href": "absolute_url_to_artifact_with_escapes",
+            "method": "get"
+        }
+    },
+    "local": false,
+    "orgForeignKey": "number",
+    "platform": "webgl",
+    "platformName": "Web GL",
+    "projectGuid": "project_guid",
+    "projectName": "Runeguard",
+    "scmType": "oauth",
+    "startedBy": "Nathanael Coonrod <ncoonrod@dogmage.com>"
+}

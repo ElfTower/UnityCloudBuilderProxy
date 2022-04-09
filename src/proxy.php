@@ -14,10 +14,15 @@
         header ('HTTP/1.0 401 Unauthorized');
         echo "unauthorized";
 
+        file_put_contents ("./unauthorized.txt", json_encode (array (
+                "user" => $_SERVER['PHP_AUTH_USER'],
+                "password" => $_SERVER['PHP_AUTH_PW']
+            )), FILE_APPEND);
+
         exit;
     }
 
-    $buildShareLink = $obj["links"]["share_url"]["href"];
+    $buildShareLink = $obj["links"]["artifacts"][0]["files"][0]["href"];
 
     // For CircleCI APIv2 when its ready
     /*$url = "https://circleci.com/api/v2/project/{$vcs}/{$org}/{$repo}/pipeline";
