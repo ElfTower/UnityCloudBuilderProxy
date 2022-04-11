@@ -24,26 +24,38 @@
         exit;
     }
 
-    $buildShareLink = $obj["links"]["artifacts"][0]["files"][0]["href"];
-
     // For CircleCI APIv2 when its ready
-    /*$url = "https://circleci.com/api/v2/project/{$vcs}/{$org}/{$repo}/pipeline";
-
-    $objToSend = array (
-            "branch" => $branch,
-            "parameters" => array (
-                    "UNITY_SHARE_LINK" => $buildShareLink
-                )
-        );*/
+    //$url = "https://circleci.com/api/v2/project/{$vcs}/{$org}/{$repo}/pipeline";
 
     // CircleCI APIv1.1
     $url = "https://circleci.com/api/v1.1/project/{$vcs}/{$org}/{$repo}/tree/{$branch}";
+    $finalObjToSend = null;
 
-    $objToSend = array (
-            "build_parameters" => array (
-                    "UNITY_SHARE_LINK" => $buildShareLink
-                )
-        );
+    if ($obj["buildStatus"] == "success")
+    {
+        $buildShareLink = $obj["links"]["artifacts"][0]["files"][0]["href"];
+
+        /*
+        // For CircleCI APIv2
+        $objToSend = array (
+                "branch" => $branch,
+                "parameters" => array (
+                        "UNITY_SHARE_LINK" => $buildShareLink
+                    )
+            );*/
+
+        $objToSend = array (
+                "build_parameters" => array (
+                        "UNITY_SHARE_LINK" => $buildShareLink
+                    )
+            );
+
+        $finalObjToSend = json_encode ($objToSend);
+    }
+    else
+    {
+        $finalObjToSend = "build_parameters[CIRCLE_JOB]=build-failed";
+    }
 
     $ch = curl_init ($url);
 
@@ -53,7 +65,7 @@
                 "Content-Type: application/json"
             )); 
     curl_setopt ($ch, CURLOPT_POST, 1);
-    curl_setopt ($ch, CURLOPT_POSTFIELDS, json_encode ($objToSend));
+    curl_setopt ($ch, CURLOPT_POSTFIELDS, $finalObjToSend);
 
     $result = curl_exec ($ch);
     curl_close ($ch);
